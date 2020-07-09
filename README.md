@@ -229,7 +229,7 @@ ORDER BY ordercount DESC
 * [ ] ***list orders grouped by customer's city showing the number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders***
 
 SELECT city,
- (SELECT COUNT(o.order_id)
+ (SELECT COUNT(o.order_id) //makes another table and grabs from that or filters cities
          FROM orders o
          WHERE o.ship_city = c.city) as ordercount  
 FROM customers c  
@@ -262,49 +262,50 @@ Below are some empty tables to be used to normalize the database
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
 
-|            |            |            |            |            |            |            |            |            |
+Table Name: People
+
+|  Person Id |   Name     |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        |   Jane     |            |            |            |            |            |            |            |            |
+|   2        |   Bob      |            |            |            |            |            |            |            |
+|   3        |   Sam      |            |            |            |            |            |            |
+|   4        |            |            |            |            |            |            |            |            |
+|   5        |            |            |            |            |            |            |            |            |
+|   6        |            |            |            |            |            |            |            |            |
+|   7        |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pets
 
-|            |            |            |            |            |            |            |            |            |
+|  Pet Id    |   PetName  |   Nickname |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|   1        |   Ellie    |            |            |            |            |            |            |            |
+|   2        |   Joe      |            |            |            |            |            |            |            |
+|   3        |   Ginger   |            |            |            |            |            |            |            |
+|   4        |            |            |            |            |            |            |            |            |
+|   5        |            |            |            |            |            |            |            |            |
+|   6        |            |            |            |            |            |            |            |            |
+|   7        |            |            |            |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet Types
 
-|            |            |            |            |            |            |            |            |            |
+|  Pet Type  |            |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|    Dog     |            |            |            |            |            |            |            |            |
+|    Horse   |            |            |            |            |            |            |            |            |
+|    Cat     |            |            |            |            |            |            |            |            |
+|    Turtle  |            |            |            |            |            |            |            |            |
+|    Fish    |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 
 
-Table Name: 
+Table Name: Locations
 
-|            |            |            |            |            |            |            |            |            |
+|  Locations |            |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|Fenced Yard |            |            |            |            |            |            |            |            |
+|City Dweller|            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
 |            |            |            |            |            |            |            |            |            |
@@ -317,44 +318,6 @@ Table Name:
 No derived fields
 Eliminate fields that do not depend on the key
 In an employees tables, do not store the name of departments. If a department has no employees, there is no where to store the department name. Store the department name in a separate table and use foreign keys to reference it.
-3NF - Derived column Full Name is removed. Supervisor’s name is referenced
-Person Table
-
-Person Id	First name	Last Name
-1	John	Mitchell
-2	Steve	Green
-3	Amy	Found
-4	BarnBarn	Rabbit
-PersonCompany Table
-
-Person Id	Company Id
-1	1
-2	2
-3	3
-4	1
-4	2
-Company Table
-
-Company Id	Company Name	Company Tax Id
-1	Lambda School	99-999999
-2	Home	88-888888
-3	A Perfect Company	77-777777
-Email Table
-
-Email id	Person id	email
-1	1	john@lambdaschool.com
-2	1	jrmmba@outlook.com
-3	1	jrmmba8314@gmail.com
-4	2	steve@email.local
-5	3	amy@email.local
-6	3	afound@home.email
-7	4	barnbarn@hops.local
-Supervisor
-
-Supervisor Id	Person Id	location
-1	3	condo
-2	4	hutch
-
 
 
 
